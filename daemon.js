@@ -39,9 +39,15 @@ function check_tab(element, event) {
 const textArea = document.querySelector("textarea");
 const output = document.querySelector("#output-container");
 textArea.addEventListener("input", (e) => {
+  localStorage.setItem("code", textArea.value);
   try {
     output.textContent = eval(textArea.value);
   } catch (exception) {
     output.textContent = exception;
   }
 });
+
+if (localStorage.getItem("code") != "") {
+  textArea.value = localStorage.getItem("code");
+  update(localStorage.getItem("code"));
+}
